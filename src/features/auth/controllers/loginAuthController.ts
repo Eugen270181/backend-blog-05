@@ -1,14 +1,14 @@
 import {Response, Request} from 'express'
+import {LoginInputModel} from "../types/input/login-input.model";
+import {authServices} from "../services/authServices";
 
 
-export const loginAuthController = async (req: Request<any, any, CreateBlogInputModel>, res: Response<BlogOutputModel>) => {
-    const newBlogId = await blogsServices.createBlog(req.body)
-    const newBlog = await blogsQueryRepository.findBlogAndMap(newBlogId)
+export const loginAuthController = async (req: Request<any, any, LoginInputModel>, res: Response) => {
+    const isLogin = await authServices.isLogin(req.body)
 
-    if (!newBlog) {
-        console.log('блог был создан, но не найден')
-        res.sendStatus(504)
+    if (!isLogin) {
+        res.sendStatus(401)
         return
     }
-    res.status(201).send(newBlog)
+    res.sendStatus(204)
 }
