@@ -4,9 +4,12 @@ export const SETTINGS = {
     // все хардкодные значения должны быть здесь, для удобства их изменения
     PORT: process.env.PORT || 3003,
     PATH: {
+        AUTH: '/auth',
+        USERS: '/users',
         BLOGS: '/blogs',
         POSTS: '/posts',
         TESTING: '/testing',
+
     },
     ADMIN: process.env.ADMIN || 'admin:qwerty',
     MONGO_URL:process.env.MONGO_URL || 'mongodb+srv://admin:admin@blogerplatform.vkvms.mongodb.net/BlogsPosts?retryWrites=true&w=majority&appName=BlogerPlatform',
