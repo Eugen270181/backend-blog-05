@@ -2,6 +2,7 @@ import {Db, Collection, MongoClient} from "mongodb"
 import {BlogDbModel} from '../../types/db/blog-db.model'
 import {PostDbModel} from '../../types/db/post-db.model'
 import {SETTINGS} from "../../../settings";
+import {UserDbModel} from "../../types/db/user-db.model";
 
 
 
@@ -14,6 +15,8 @@ export const dbMongo: Db = client.db(SETTINGS.MONGO_DB);
 export const blogCollection: Collection<BlogDbModel> = dbMongo.collection<BlogDbModel>(SETTINGS.BLOG_COLLECTION_NAME)
 
 export const postCollection: Collection<PostDbModel> = dbMongo.collection<PostDbModel>(SETTINGS.POST_COLLECTION_NAME)
+
+export const userCollection: Collection<UserDbModel> = dbMongo.collection<UserDbModel>(SETTINGS.USER_COLLECTION_NAME)
 
 // проверка подключения к бд
 export const connectToDB = async () => {

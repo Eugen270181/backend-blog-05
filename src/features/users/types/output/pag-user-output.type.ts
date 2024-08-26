@@ -1,6 +1,7 @@
 import {UserOutputModel} from "./user-output.type";
 
-export type pagUserOutputModel = {
+
+  export type pagUserOutputModel = {
   pagesCount: number
   page: number
   pageSize: number
