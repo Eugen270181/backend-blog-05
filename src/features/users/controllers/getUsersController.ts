@@ -1,14 +1,14 @@
 import {Request, Response} from 'express'
 import {usersQueryRepository} from "../repositories/usersQueryRepository";
 import {inputQuerySanitizer} from "../../../common/module/inputQuerySanitizer";
-import {pagBlogOutputModel} from "../types/output/pag-blog-output.type";
 import {validQueryType} from "../../../common/types/valid-query-type";
 import {anyQueryType} from "../../../common/types/any-query-type";
+import {pagUserOutputModel} from "../types/output/pag-user-output.type";
 
 //TODO:
-export const getUsersController = async (req:Request, res:Response<pagBlogOutputModel>) => {
+export const getUsersController = async (req:Request, res:Response<pagUserOutputModel>) => {
     const sanitizedQuery:validQueryType = inputQuerySanitizer(req.query as anyQueryType)
-    const foundBlogs = await usersQueryRepository.getBlogsAndMap(sanitizedQuery)
-    res.status(200).send(foundBlogs)
+    const foundUsers = await usersQueryRepository.getUsersAndMap(sanitizedQuery)
+    res.status(200).send(foundUsers)
     return
 }

@@ -1,19 +1,19 @@
 import {Response, Request} from 'express'
-import {CreateBlogInputModel} from "../types/input/create-blog-input.type";
-import {BlogOutputModel} from "../types/output/blog-output.type";
 import {usersServices} from "../services/usersServices";
 import {usersQueryRepository} from "../repositories/usersQueryRepository";
+import {CreateUserInputModel} from "../types/input/create-user-input.type";
+import {UserOutputModel} from "../types/output/user-output.type";
 
 
 //TODO:
-export const createUserController = async (req: Request<any, any, CreateBlogInputModel>, res: Response<BlogOutputModel>) => {
-    const newBlogId = await usersServices.createBlog(req.body)
-    const newBlog = await usersQueryRepository.findBlogAndMap(newBlogId)
+export const createUserController = async (req: Request<any, any, CreateUserInputModel>, res: Response<UserOutputModel>) => {
+    const newUserId = await usersServices.createUser(req.body)
+    const newUser = await usersQueryRepository.findUserAndMap(newUserId)
 
-    if (!newBlog) {
-        console.log('блог был создан, но не найден')
+    if (!newUser) {
+        console.log('юзер был создан, но не найден')
         res.sendStatus(504)
         return
     }
-    res.status(201).send(newBlog)
-}
+    res.status(201).send(newUser)
+};

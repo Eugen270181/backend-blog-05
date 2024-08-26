@@ -1,26 +1,24 @@
 import {usersRepository} from "../repositories/usersRepository";
-import {CreateBlogInputModel} from "../types/input/create-blog-input.type";
-import {UpdateBlogInputModel} from "../types/input/update-blog-input.type";
-import {BlogDbModel} from "../../../common/types/db/blog-db.model";
 import {ObjectId} from "bson";
+import {CreateUserInputModel} from "../types/input/create-user-input.type";
+import {UserDbModel} from "../../../common/types/db/user-db.model";
 
 //TODO:
 export const usersServices = {
-    async createBlog(blog: CreateBlogInputModel):Promise<string> {
-        const {name, description, websiteUrl} = blog
-        const newBlog:BlogDbModel = {
-            ...{name, description, websiteUrl},
-            createdAt: new Date().toISOString(),
-            isMembership:false
+    async createUser(user: CreateUserInputModel):Promise<string> {
+        const {login, password, email} = user
+        //TODO:проверка уникальности логина и емэйла
+        const newUser:UserDbModel = {
+            ...{login,email},
+            //TODO: подключить ф-ию сервиса bcrypt
+            passHash:'passHash(password)',
+            createdAt: new Date().toISOString()
         }
-        return usersRepository.createBlog(newBlog)
+        return usersRepository.createUser(newUser)
     },
-    async deleteBlog(id:string){
-        const isIdValid = ObjectId.isValid(id);
+    async deleteUser(id:string){
+        const isIdValid = ObjectId.isValid(id)
         if (!isIdValid) return false
-        return usersRepository.deleteBlog(new ObjectId(id))
-    },
-    async updateBlog(blog: UpdateBlogInputModel, id: string) {
-        return usersRepository.updateBlog(blog,id)
-    },
+        return usersRepository.deleteUser(new ObjectId(id))
+    }
 }
