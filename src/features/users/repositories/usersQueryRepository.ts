@@ -5,7 +5,6 @@ import {pagUserOutputModel} from "../types/output/pag-user-output.type";
 import {UserOutputModel} from "../types/output/user-output.type";
 import {UserDbModel} from "../../../common/types/db/user-db.model";
 
-//TODO:
 
 export const usersQueryRepository = {
     async findUserById(id: string) {

@@ -1,11 +1,14 @@
 import {SortDirection} from "mongodb";
-import {CreateBlogInputModel} from "../../features/blogs/types/input/create-blog-input.type";
-import {CreatePostInputModel} from "../../features/posts/types/input/create-post-input.type";
-export type FieldNamesType = keyof CreateBlogInputModel | keyof CreatePostInputModel
+import {BlogOutputModel} from "../../features/blogs/types/output/blog-output.type";
+import {PostOutputModel} from "../../features/posts/types/output/post-output.type";
+import {UserOutputModel} from "../../features/users/types/output/user-output.type";
+export type FieldNamesType = keyof BlogOutputModel | keyof PostOutputModel | keyof UserOutputModel
 export type validQueryType = {
     pageNumber: number
     pageSize: number
-    sortBy: string
+    sortBy: FieldNamesType
     sortDirection: SortDirection
     searchNameTerm: string|null
+    searchLoginTerm: string | null
+    searchEmailTerm: string | null
 }

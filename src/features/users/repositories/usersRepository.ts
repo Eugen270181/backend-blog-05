@@ -1,8 +1,8 @@
 import {userCollection} from "../../../common/module/db/dbMongo"
-import {ObjectId} from "mongodb"
+import {ObjectId,WithId} from "mongodb"
 import {UserDbModel} from "../../../common/types/db/user-db.model";
 
-//TODO:
+
 export const usersRepository = {
     async createUser(user: UserDbModel):Promise<string> {
         const result = await userCollection.insertOne(user)
@@ -13,11 +13,18 @@ export const usersRepository = {
         if (!isIdValid) return null
         return userCollection.findOne({ _id: new ObjectId(id) });
     },
+    async findUserByCredentials(inputLogin:string):Promise<WithId<UserDbModel>|null> {
+        const search = { $or: [
+            { username: login },  // поля логина
+            { email: login }      // или электронная почта
+        ] }
+        return userCollection.findOne(search);
+    },
     async findUserByLogin(login: string) {
-        return !!userCollection.find({login});
+        return !!userCollection.findOne({login});
     },
     async findUserByEmail(email: string) {
-        return !!userCollection.find({email} );
+        return !!userCollection.findOne({email} );
     },
     async deleteUser(id:ObjectId){
         const result = await userCollection.deleteOne({ _id: id });
