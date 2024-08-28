@@ -1,17 +1,17 @@
 import {UserDbModel} from "../types/db/user-db.model";
-import  {Jwt} from 'jsonwebtoken'
 import {SETTINGS} from "../../settings";
 import {WithId} from "mongodb"
+import jwt, {JwtPayload} from 'jsonwebtoken'
 
 
 export const jwtService = {
-    async createJWT(user:WithId<UserDbModel>):Promise<string> {
-        const token = await  Jwt.sign({userId:user._id.toString()},SETTINGS.SECRET_KEY,{expiresIn:'1h'})
+    createJWT(user:WithId<UserDbModel>):string {
+        const token = jwt.sign({userId:user._id.toString()},SETTINGS.SECRET_KEY,{expiresIn:'1h'})
         return token
     },
-    async getUserByIdToken(token:string){
+     getUserByIdToken(token:string){
         try {
-            const result = await Jwt.verify(token, SETTINGS.SECRET_KEY)
+            const result = jwt.verify(token, SETTINGS.SECRET_KEY) as JwtPayload
             return result.userId.toString()
         }
         catch (e) {

@@ -17,7 +17,9 @@ export const usersQueryRepository = {
         return user?this.map(user):null
     },
     async getUsersAndMap(query:validQueryType):Promise<pagUserOutputModel> {
-        const search = query.searchNameTerm ? {name:{$regex:query.searchNameTerm,$options:'i'}}:{}//TODO
+        const searchLogin = query.searchLoginTerm ? {login:{$regex:query.searchLoginTerm,$options:'i'}}:{}
+        const searchEmail = query.searchEmailTerm ? {email:{$regex:query.searchEmailTerm,$options:'i'}}:{}
+        const search = {$or:[searchLogin,searchEmail]}
         try {
             const users = await userCollection
                 .find(search)

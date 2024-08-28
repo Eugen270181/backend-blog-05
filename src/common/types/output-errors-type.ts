@@ -4,9 +4,9 @@ import {CreateUserInputModel} from "../../features/users/types/input/create-user
 
 
 
-export type FieldNamesType = keyof CreateBlogInputModel | keyof CreatePostInputModel | CreateUserInputModel;
+//export type FieldNamesType = keyof CreateBlogInputModel | keyof CreatePostInputModel | keyof CreateUserInputModel;
 // const f: FieldsType = 'some' // error
-export type errorsMessagesType = {message: string, field: FieldNamesType}
+export type errorsMessagesType = {message: string, field: string}
 export type OutputErrorsType = {
     errorsMessages: errorsMessagesType[]
 }

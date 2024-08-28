@@ -15,16 +15,16 @@ export const usersRepository = {
     },
     async findUserByCredentials(inputLogin:string):Promise<WithId<UserDbModel>|null> {
         const search = { $or: [
-            { username: login },  // поля логина
-            { email: login }      // или электронная почта
+            { login: inputLogin },  // поля логина
+            { email: inputLogin }      // или электронная почта
         ] }
         return userCollection.findOne(search);
     },
     async findUserByLogin(login: string) {
-        return !!userCollection.findOne({login});
+        return userCollection.findOne({login});
     },
     async findUserByEmail(email: string) {
-        return !!userCollection.findOne({email} );
+        return userCollection.findOne({email} );
     },
     async deleteUser(id:ObjectId){
         const result = await userCollection.deleteOne({ _id: id });
