@@ -1,4 +1,4 @@
-import {blogCollection, userCollection} from "../../../common/module/db/dbMongo"
+import {userCollection} from "../../../common/module/db/dbMongo"
 import {ObjectId, WithId} from "mongodb"
 import {validQueryType} from "../../../common/types/valid-query-type";
 import {pagUserOutputModel} from "../types/output/pag-user-output.type";

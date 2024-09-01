@@ -3,7 +3,6 @@ import {dbMongo, setDB} from '../src/db/dbMemory'
 import {SETTINGS} from '../src/settings'
 import {codedAuth, createString, dataset1, dataset2} from './helpers/datasets'
 
-import {CreateBlogInputModel} from "../src/features/blogs/types/input/create-blog-input.type";
 import {CreatePostInputModel} from "../src/features/posts/types/input/create-post-input.type";
 
 describe('/posts', () => {

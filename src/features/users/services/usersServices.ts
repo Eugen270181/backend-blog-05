@@ -2,7 +2,7 @@ import {usersRepository} from "../repositories/usersRepository";
 import {ObjectId} from "bson";
 import {CreateUserInputModel} from "../types/input/create-user-input.type";
 import {UserDbModel} from "../../../common/types/db/user-db.model";
-import {OutputErrorsType} from "../../../common/types/output-errors-type";
+//import {OutputErrorsType} from "../../../common/types/output-errors-type";
 import {hashServices} from "../../../common/module/hashServices";
 
 
@@ -15,9 +15,9 @@ type Result<T> = {
     data:T,
     statusCode:StatusCode
 }
-const ErrorObject = ( message: string, field: string ):OutputErrorsType => {
-    return { errorsMessages: [ {message, field} ] }
-}
+//const ErrorObject = ( message: string, field: string ):OutputErrorsType => {
+//    return { errorsMessages: [ {message, field} ] }
+//}
 
 export const usersServices = {
     async createUser(user: CreateUserInputModel):Promise<Result<string>> {

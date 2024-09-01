@@ -1,5 +1,4 @@
 import {Request, Response} from 'express'
-import {postsRepository} from '../repository/postsRepository'
 import {UpdatePostInputModel} from "../types/input/update-post-input.type";
 import {postsServices} from "../services/postsServices";
 

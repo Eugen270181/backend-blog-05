@@ -1,8 +1,6 @@
 import {Request, Response} from 'express'
-import {BlogOutputModel} from "../types/output/blog-output.type";
 import {postsQueryRepository} from "../../posts/repository/postsQueryRepository";
 import {pagPostOutputModel} from "../../posts/types/output/pag-post-output.type";
-import {PostOutputModel} from "../../posts/types/output/post-output.type";
 import {blogsQueryRepository} from "../repositories/blogsQueryRepository";
 import {validQueryType} from "../../../common/types/valid-query-type";
 import {inputQuerySanitizer} from "../../../common/module/inputQuerySanitizer";

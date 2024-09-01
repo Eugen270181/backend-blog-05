@@ -5,7 +5,6 @@ import {validQueryType} from "../../../common/types/valid-query-type";
 import {anyQueryType} from "../../../common/types/any-query-type";
 import {pagUserOutputModel} from "../types/output/pag-user-output.type";
 
-//TODO:
 export const getUsersController = async (req:Request, res:Response<pagUserOutputModel>) => {
     const sanitizedQuery:validQueryType = inputQuerySanitizer(req.query as anyQueryType)
     const foundUsers = await usersQueryRepository.getUsersAndMap(sanitizedQuery)
